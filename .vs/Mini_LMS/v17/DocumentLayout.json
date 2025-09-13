@@ -102,8 +102,7 @@
               "RelativeToolTip": "Mini_LMS\\Models\\Passwordtoken.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T11:21:58.947Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-13T11:21:58.947Z"
             },
             {
               "$type": "Document",
@@ -115,8 +114,7 @@
               "RelativeToolTip": "Mini_LMS\\Models\\Passwordreset.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T11:21:49.713Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-13T11:21:49.713Z"
             },
             {
               "$type": "Document",
@@ -128,8 +126,7 @@
               "RelativeToolTip": "Mini_LMS\\Models\\Notification.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T11:21:41.864Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-13T11:21:41.864Z"
             },
             {
               "$type": "Document",
@@ -141,8 +138,7 @@
               "RelativeToolTip": "Mini_LMS\\Models\\Emailotp.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T11:21:18.536Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-13T11:21:18.536Z"
             },
             {
               "$type": "Document",
@@ -154,8 +150,7 @@
               "RelativeToolTip": "Mini_LMS\\Models\\CourseTakedownRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T11:21:03.174Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-13T11:21:03.174Z"
             },
             {
               "$type": "Document",
@@ -167,8 +162,7 @@
               "RelativeToolTip": "Mini_LMS\\Models\\CourseApproval.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T11:20:52.543Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-13T11:20:52.543Z"
             },
             {
               "$type": "Document",
@@ -180,8 +174,7 @@
               "RelativeToolTip": "Mini_LMS\\Models\\Feedback.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T12:25:22.469Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-12T12:25:22.469Z"
             },
             {
               "$type": "Document",
@@ -193,8 +186,7 @@
               "RelativeToolTip": "Mini_LMS\\Controllers\\ModuleController.cs",
               "ViewState": "AgIAAL0AAAAAAAAAAAAkwNkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T12:23:37.512Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-12T12:23:37.512Z"
             },
             {
               "$type": "Document",
@@ -206,8 +198,7 @@
               "RelativeToolTip": "Mini_LMS\\Models\\Module.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T12:22:02.633Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-12T12:22:02.633Z"
             },
             {
               "$type": "Document",
@@ -219,8 +210,7 @@
               "RelativeToolTip": "Mini_LMS\\Controllers\\CourseController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAJ4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T12:21:23.58Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-12T12:21:23.58Z"
             },
             {
               "$type": "Document",
@@ -232,8 +222,7 @@
               "RelativeToolTip": "Mini_LMS\\Models\\Course.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAkAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T12:20:13.501Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-12T12:20:13.501Z"
             },
             {
               "$type": "Document",
@@ -245,8 +234,7 @@
               "RelativeToolTip": "Mini_LMS\\Models\\User.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T06:36:11.68Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-12T06:36:11.68Z"
             },
             {
               "$type": "Document",
@@ -271,8 +259,7 @@
               "RelativeToolTip": "Mini_LMS\\Controllers\\UserController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAIcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T15:23:01.394Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T15:23:01.394Z"
             },
             {
               "$type": "Document",
@@ -284,8 +271,7 @@
               "RelativeToolTip": "Mini_LMS\\Controllers\\AuthController.cs",
               "ViewState": "AgIAAJcAAAAAAAAAAAAkwM4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T10:36:27.297Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T10:36:27.297Z"
             },
             {
               "$type": "Document",
@@ -309,8 +295,7 @@
               "RelativeToolTip": "Mini_LMS\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-11T06:40:34.079Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T06:40:34.079Z"
             },
             {
               "$type": "Document",
@@ -322,8 +307,7 @@
               "RelativeToolTip": "Mini_LMS\\Program.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAAAAsAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T05:25:54.091Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T05:25:54.091Z"
             },
             {
               "$type": "Document",
@@ -347,8 +331,7 @@
               "RelativeToolTip": "Mini_LMS\\Controllers\\HomeController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T05:05:08.165Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T05:05:08.165Z"
             }
           ]
         },
