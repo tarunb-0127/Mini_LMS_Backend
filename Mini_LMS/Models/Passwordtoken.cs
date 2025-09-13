@@ -7,7 +7,7 @@ public partial class Passwordtoken
 {
     public int Id { get; set; }
 
-    public long UserId { get; set; }
+    public int UserId { get; set; }
 
     public string Email { get; set; } = null!;
 

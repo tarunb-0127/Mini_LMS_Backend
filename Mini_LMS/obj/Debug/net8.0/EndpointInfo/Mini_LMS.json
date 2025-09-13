@@ -289,6 +289,30 @@
         }
       }
     },
+    "/api/auth/stats": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/auth/home": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Course/create": {
       "post": {
         "tags": [
@@ -306,7 +330,7 @@
                   },
                   "TrainerId": {
                     "type": "integer",
-                    "format": "int64"
+                    "format": "int32"
                   },
                   "Name": {
                     "type": "string"
@@ -358,9 +382,12 @@
                   },
                   "Trainer.Id": {
                     "type": "integer",
-                    "format": "int64"
+                    "format": "int32"
                   },
                   "Trainer.Email": {
+                    "type": "string"
+                  },
+                  "Trainer.Username": {
                     "type": "string"
                   },
                   "Trainer.PasswordHash": {
@@ -468,6 +495,9 @@
                   "style": "form"
                 },
                 "Trainer.Email": {
+                  "style": "form"
+                },
+                "Trainer.Username": {
                   "style": "form"
                 },
                 "Trainer.PasswordHash": {
@@ -545,7 +575,7 @@
                   },
                   "TrainerId": {
                     "type": "integer",
-                    "format": "int64"
+                    "format": "int32"
                   },
                   "Name": {
                     "type": "string"
@@ -597,9 +627,12 @@
                   },
                   "Trainer.Id": {
                     "type": "integer",
-                    "format": "int64"
+                    "format": "int32"
                   },
                   "Trainer.Email": {
+                    "type": "string"
+                  },
+                  "Trainer.Username": {
                     "type": "string"
                   },
                   "Trainer.PasswordHash": {
@@ -709,6 +742,9 @@
                 "Trainer.Email": {
                   "style": "form"
                 },
+                "Trainer.Username": {
+                  "style": "form"
+                },
                 "Trainer.PasswordHash": {
                   "style": "form"
                 },
@@ -761,6 +797,44 @@
         "tags": [
           "Course"
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Course/request-takedown": {
+      "post": {
+        "tags": [
+          "Course"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "courseId": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "courseId": {
+                  "style": "form"
+                },
+                "reason": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -1254,6 +1328,9 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "username": {
+                    "type": "string"
+                  },
                   "email": {
                     "type": "string"
                   },
@@ -1266,6 +1343,9 @@
                 }
               },
               "encoding": {
+                "username": {
+                  "style": "form"
+                },
                 "email": {
                   "style": "form"
                 },
@@ -1342,7 +1422,7 @@
           },
           "trainerId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           "name": {
             "type": "string",
@@ -1421,7 +1501,7 @@
           },
           "requestedBy": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           "status": {
             "type": "string",
@@ -1458,7 +1538,7 @@
           },
           "requestedBy": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           "reason": {
             "type": "string",
@@ -1495,7 +1575,7 @@
           },
           "learnerId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           "courseId": {
             "type": "integer",
@@ -1588,7 +1668,7 @@
           },
           "userId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           "type": {
             "type": "string",
@@ -1621,7 +1701,7 @@
           },
           "userId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           "email": {
             "type": "string",
@@ -1654,7 +1734,7 @@
           },
           "userId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           "email": {
             "type": "string",
@@ -1683,9 +1763,13 @@
         "properties": {
           "id": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "username": {
             "type": "string",
             "nullable": true
           },

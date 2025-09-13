@@ -9,7 +9,7 @@ public partial class CourseApproval
 
     public int CourseId { get; set; }
 
-    public long RequestedBy { get; set; }
+    public int RequestedBy { get; set; }
 
     public string? Status { get; set; }
 

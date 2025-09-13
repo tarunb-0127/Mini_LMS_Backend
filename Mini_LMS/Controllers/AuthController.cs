@@ -160,5 +160,47 @@ namespace Mini_LMS.Controllers
 
             return Ok(new { message = "Password reset successful." });
         }
+
+        // 🔐 Only Admins can get these stats
+        [Authorize(Roles = "Admin")]
+        [HttpGet("stats")]
+        public async Task<IActionResult> GetStats()
+        {
+            var totalCourses = await _db.Courses.CountAsync();
+            var totalUsers = await _db.Users.CountAsync();
+            var activeUsers = await _db.Users.CountAsync(u => u.IsActive == true);
+            var totalTrainers = await _db.Users.CountAsync(u => u.Role == "Trainer");
+            var totalLearners = await _db.Users.CountAsync(u => u.Role == "Learner");
+
+            // If you have a takedown table:
+            var takedownRequests = await _db.CourseTakedownRequests.CountAsync();
+
+            return Ok(new
+            {
+                totalCourses,
+                totalUsers,
+                activeUsers,
+                totalTrainers,
+                totalLearners,
+                takedownRequests
+            });
+        }
+
+
+        // 🔐 Only authenticated users with Admin role can access
+        [Authorize(Roles = "Admin")]
+        [HttpGet("home")]
+        public IActionResult GetAdminHome()
+        {
+            return Ok(new
+            {
+                message = "Welcome to the Admin Dashboard",
+                user = User.Identity?.Name
+            });
+        }
     }
 }
+
+
+
+

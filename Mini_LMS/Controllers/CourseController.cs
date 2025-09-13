@@ -104,6 +104,44 @@ namespace Mini_LMS.Controllers
             return Ok(courses);
         }
 
+        // 🔐 Trainers can request course takedown
+        [Authorize(Roles = "Trainer")]
+        [HttpPost("request-takedown")]
+        public async Task<IActionResult> RequestTakedown([FromForm] int courseId, [FromForm] string reason)
+        {
+            var trainerEmail = User.Identity?.Name;
+            var trainer = await _db.Users.SingleOrDefaultAsync(u => u.Email == trainerEmail && u.Role == "Trainer");
+
+            if (trainer == null)
+                return Unauthorized();
+
+            var course = await _db.Courses.FindAsync(courseId);
+            if (course == null)
+                return NotFound(new { message = "Course not found." });
+
+            // Save takedown request (optional: create a CourseTakedownRequest table if needed)
+            var admins = await _db.Users.Where(u => u.Role == "Admin").ToListAsync();
+
+            foreach (var admin in admins)
+            {
+                _db.Notifications.Add(new Notification
+                {
+                    UserId = admin.Id,
+                    Type = "TakedownRequested",
+                    Message = $"Trainer '{trainer.Email}' requested takedown of course '{course.Name}'. Reason: {reason}",
+                    IsRead = false,
+                    CreatedAt = DateTime.UtcNow
+                });
+
+                // ✅ Use your existing EmailService
+                await _email.SendCourseUpdateEmailAsync(admin.Email, $"Takedown Request: {course.Name}\nReason: {reason}");
+            }
+
+            await _db.SaveChangesAsync();
+            return Ok(new { message = "Takedown request submitted successfully." });
+        }
+
+
         // 👁️ Any authenticated user can view a course
         [Authorize]
         [HttpGet("{id}")]

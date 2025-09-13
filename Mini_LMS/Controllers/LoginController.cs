@@ -52,8 +52,11 @@ public class AuthController : ControllerBase
             audience: audience,
             claims: new[]
             {
-                new Claim(ClaimTypes.Name, user.Email),
-                new Claim(ClaimTypes.Role, user.Role)
+                 new Claim("username", user.Username), // ✅ Explicit custom claim
+        new Claim(ClaimTypes.Name, user.Username),
+        new Claim(ClaimTypes.Role, user.Role),
+        new Claim("email", user.Email),       // ✅ Optional: add email too
+        new Claim("UserId", user.Id.ToString()) // 
             },
             expires: DateTime.UtcNow.AddHours(1),
             signingCredentials: creds

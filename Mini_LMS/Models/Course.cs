@@ -7,7 +7,7 @@ public partial class Course
 {
     public int Id { get; set; }
 
-    public long TrainerId { get; set; }
+    public int TrainerId { get; set; }
 
     public string Name { get; set; } = null!;
 

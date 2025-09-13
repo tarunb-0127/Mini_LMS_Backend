@@ -21,6 +21,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Mini_LMS.Controllers.AuthController",
+    "Method": "GetAdminHome",
+    "RelativePath": "api/auth/home",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AuthController",
     "Method": "Login",
     "RelativePath": "api/Auth/login",
@@ -167,6 +177,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Mini_LMS.Controllers.AuthController",
+    "Method": "GetStats",
+    "RelativePath": "api/auth/stats",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Mini_LMS.Controllers.CourseController",
     "Method": "Get",
     "RelativePath": "api/Course/{id}",
@@ -207,7 +227,7 @@
       },
       {
         "Name": "TrainerId",
-        "Type": "System.Int64",
+        "Type": "System.Int32",
         "IsRequired": false
       },
       {
@@ -267,11 +287,16 @@
       },
       {
         "Name": "Trainer.Id",
-        "Type": "System.Int64",
+        "Type": "System.Int32",
         "IsRequired": false
       },
       {
         "Name": "Trainer.Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Trainer.Username",
         "Type": "System.String",
         "IsRequired": false
       },
@@ -358,7 +383,7 @@
       },
       {
         "Name": "TrainerId",
-        "Type": "System.Int64",
+        "Type": "System.Int32",
         "IsRequired": false
       },
       {
@@ -418,11 +443,16 @@
       },
       {
         "Name": "Trainer.Id",
-        "Type": "System.Int64",
+        "Type": "System.Int32",
         "IsRequired": false
       },
       {
         "Name": "Trainer.Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Trainer.Username",
         "Type": "System.String",
         "IsRequired": false
       },
@@ -484,6 +514,27 @@
       {
         "Name": "Trainer.Passwordtokens",
         "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.Passwordtoken, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Mini_LMS.Controllers.CourseController",
+    "Method": "RequestTakedown",
+    "RelativePath": "api/Course/request-takedown",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "reason",
+        "Type": "System.String",
         "IsRequired": false
       }
     ],
@@ -798,6 +849,11 @@
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "username",
+        "Type": "System.String",
+        "IsRequired": false
       },
       {
         "Name": "email",

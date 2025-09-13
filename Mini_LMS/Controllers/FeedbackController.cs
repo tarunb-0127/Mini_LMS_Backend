@@ -34,7 +34,7 @@ namespace Mini_LMS.Controllers
 
             var feedback = new Feedback
             {
-                LearnerId = req.LearnerId,
+                LearnerId = (int)req.LearnerId,
                 CourseId = req.CourseId,
                 Message = req.Message,
                 Rating = req.Rating ?? 0,
