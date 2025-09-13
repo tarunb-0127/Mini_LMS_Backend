@@ -1,0 +1,1780 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "MiniLMS API",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "email": {
+                  "style": "form"
+                },
+                "password": {
+                  "style": "form"
+                },
+                "role": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/auth/login/admin": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "email": {
+                  "style": "form"
+                },
+                "password": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/auth/admin/verify-otp": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "otp": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "email": {
+                  "style": "form"
+                },
+                "otp": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/auth/login/user": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "email": {
+                  "style": "form"
+                },
+                "password": {
+                  "style": "form"
+                },
+                "role": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/auth/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "email": {
+                  "style": "form"
+                },
+                "password": {
+                  "style": "form"
+                },
+                "role": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/auth/password-reset/request": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              },
+              "encoding": {
+                "userId": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/auth/password-reset/reset": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "token": {
+                    "type": "string"
+                  },
+                  "newPassword": {
+                    "type": "string"
+                  },
+                  "confirmPassword": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "email": {
+                  "style": "form"
+                },
+                "token": {
+                  "style": "form"
+                },
+                "newPassword": {
+                  "style": "form"
+                },
+                "confirmPassword": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Course/create": {
+      "post": {
+        "tags": [
+          "Course"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "TrainerId": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Type": {
+                    "type": "string"
+                  },
+                  "Duration": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Visibility": {
+                    "type": "string"
+                  },
+                  "IsApproved": {
+                    "type": "boolean"
+                  },
+                  "CreatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "UpdatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "CourseApprovals": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CourseApproval"
+                    }
+                  },
+                  "CourseTakedownRequests": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CourseTakedownRequest"
+                    }
+                  },
+                  "Feedbacks": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Feedback"
+                    }
+                  },
+                  "Modules": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Module"
+                    }
+                  },
+                  "Trainer.Id": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "Trainer.Email": {
+                    "type": "string"
+                  },
+                  "Trainer.PasswordHash": {
+                    "type": "string"
+                  },
+                  "Trainer.Role": {
+                    "type": "string"
+                  },
+                  "Trainer.IsActive": {
+                    "type": "boolean"
+                  },
+                  "Trainer.CreatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "Trainer.UpdatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "Trainer.CourseApprovals": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CourseApproval"
+                    }
+                  },
+                  "Trainer.CourseTakedownRequests": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CourseTakedownRequest"
+                    }
+                  },
+                  "Trainer.Courses": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Course"
+                    }
+                  },
+                  "Trainer.Feedbacks": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Feedback"
+                    }
+                  },
+                  "Trainer.Notifications": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Notification"
+                    }
+                  },
+                  "Trainer.Passwordresets": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Passwordreset"
+                    }
+                  },
+                  "Trainer.Passwordtokens": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Passwordtoken"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "Id": {
+                  "style": "form"
+                },
+                "TrainerId": {
+                  "style": "form"
+                },
+                "Name": {
+                  "style": "form"
+                },
+                "Type": {
+                  "style": "form"
+                },
+                "Duration": {
+                  "style": "form"
+                },
+                "Visibility": {
+                  "style": "form"
+                },
+                "IsApproved": {
+                  "style": "form"
+                },
+                "CreatedAt": {
+                  "style": "form"
+                },
+                "UpdatedAt": {
+                  "style": "form"
+                },
+                "CourseApprovals": {
+                  "style": "form"
+                },
+                "CourseTakedownRequests": {
+                  "style": "form"
+                },
+                "Feedbacks": {
+                  "style": "form"
+                },
+                "Modules": {
+                  "style": "form"
+                },
+                "Trainer.Id": {
+                  "style": "form"
+                },
+                "Trainer.Email": {
+                  "style": "form"
+                },
+                "Trainer.PasswordHash": {
+                  "style": "form"
+                },
+                "Trainer.Role": {
+                  "style": "form"
+                },
+                "Trainer.IsActive": {
+                  "style": "form"
+                },
+                "Trainer.CreatedAt": {
+                  "style": "form"
+                },
+                "Trainer.UpdatedAt": {
+                  "style": "form"
+                },
+                "Trainer.CourseApprovals": {
+                  "style": "form"
+                },
+                "Trainer.CourseTakedownRequests": {
+                  "style": "form"
+                },
+                "Trainer.Courses": {
+                  "style": "form"
+                },
+                "Trainer.Feedbacks": {
+                  "style": "form"
+                },
+                "Trainer.Notifications": {
+                  "style": "form"
+                },
+                "Trainer.Passwordresets": {
+                  "style": "form"
+                },
+                "Trainer.Passwordtokens": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Course/edit/{id}": {
+      "put": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "TrainerId": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Type": {
+                    "type": "string"
+                  },
+                  "Duration": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Visibility": {
+                    "type": "string"
+                  },
+                  "IsApproved": {
+                    "type": "boolean"
+                  },
+                  "CreatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "UpdatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "CourseApprovals": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CourseApproval"
+                    }
+                  },
+                  "CourseTakedownRequests": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CourseTakedownRequest"
+                    }
+                  },
+                  "Feedbacks": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Feedback"
+                    }
+                  },
+                  "Modules": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Module"
+                    }
+                  },
+                  "Trainer.Id": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "Trainer.Email": {
+                    "type": "string"
+                  },
+                  "Trainer.PasswordHash": {
+                    "type": "string"
+                  },
+                  "Trainer.Role": {
+                    "type": "string"
+                  },
+                  "Trainer.IsActive": {
+                    "type": "boolean"
+                  },
+                  "Trainer.CreatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "Trainer.UpdatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "Trainer.CourseApprovals": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CourseApproval"
+                    }
+                  },
+                  "Trainer.CourseTakedownRequests": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CourseTakedownRequest"
+                    }
+                  },
+                  "Trainer.Courses": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Course"
+                    }
+                  },
+                  "Trainer.Feedbacks": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Feedback"
+                    }
+                  },
+                  "Trainer.Notifications": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Notification"
+                    }
+                  },
+                  "Trainer.Passwordresets": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Passwordreset"
+                    }
+                  },
+                  "Trainer.Passwordtokens": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Passwordtoken"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "Id": {
+                  "style": "form"
+                },
+                "TrainerId": {
+                  "style": "form"
+                },
+                "Name": {
+                  "style": "form"
+                },
+                "Type": {
+                  "style": "form"
+                },
+                "Duration": {
+                  "style": "form"
+                },
+                "Visibility": {
+                  "style": "form"
+                },
+                "IsApproved": {
+                  "style": "form"
+                },
+                "CreatedAt": {
+                  "style": "form"
+                },
+                "UpdatedAt": {
+                  "style": "form"
+                },
+                "CourseApprovals": {
+                  "style": "form"
+                },
+                "CourseTakedownRequests": {
+                  "style": "form"
+                },
+                "Feedbacks": {
+                  "style": "form"
+                },
+                "Modules": {
+                  "style": "form"
+                },
+                "Trainer.Id": {
+                  "style": "form"
+                },
+                "Trainer.Email": {
+                  "style": "form"
+                },
+                "Trainer.PasswordHash": {
+                  "style": "form"
+                },
+                "Trainer.Role": {
+                  "style": "form"
+                },
+                "Trainer.IsActive": {
+                  "style": "form"
+                },
+                "Trainer.CreatedAt": {
+                  "style": "form"
+                },
+                "Trainer.UpdatedAt": {
+                  "style": "form"
+                },
+                "Trainer.CourseApprovals": {
+                  "style": "form"
+                },
+                "Trainer.CourseTakedownRequests": {
+                  "style": "form"
+                },
+                "Trainer.Courses": {
+                  "style": "form"
+                },
+                "Trainer.Feedbacks": {
+                  "style": "form"
+                },
+                "Trainer.Notifications": {
+                  "style": "form"
+                },
+                "Trainer.Passwordresets": {
+                  "style": "form"
+                },
+                "Trainer.Passwordtokens": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Course/all": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Course/{id}": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Feedbacks": {
+      "post": {
+        "tags": [
+          "Feedbacks"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "LearnerId": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "CourseId": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Message": {
+                    "type": "string"
+                  },
+                  "Rating": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              },
+              "encoding": {
+                "LearnerId": {
+                  "style": "form"
+                },
+                "CourseId": {
+                  "style": "form"
+                },
+                "Message": {
+                  "style": "form"
+                },
+                "Rating": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Feedbacks/course/{courseId}": {
+      "get": {
+        "tags": [
+          "Feedbacks"
+        ],
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Feedbacks/{id}": {
+      "get": {
+        "tags": [
+          "Feedbacks"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Feedbacks"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Message": {
+                    "type": "string"
+                  },
+                  "Rating": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              },
+              "encoding": {
+                "Message": {
+                  "style": "form"
+                },
+                "Rating": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Feedbacks"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Home": {
+      "get": {
+        "tags": [
+          "Home"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Module/create": {
+      "post": {
+        "tags": [
+          "Module"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "CourseId": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Difficulty": {
+                    "type": "string"
+                  },
+                  "Description": {
+                    "type": "string"
+                  },
+                  "File": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "CourseId": {
+                  "style": "form"
+                },
+                "Name": {
+                  "style": "form"
+                },
+                "Difficulty": {
+                  "style": "form"
+                },
+                "Description": {
+                  "style": "form"
+                },
+                "File": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Module/{id}": {
+      "put": {
+        "tags": [
+          "Module"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Difficulty": {
+                    "type": "string"
+                  },
+                  "Description": {
+                    "type": "string"
+                  },
+                  "File": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "Name": {
+                  "style": "form"
+                },
+                "Difficulty": {
+                  "style": "form"
+                },
+                "Description": {
+                  "style": "form"
+                },
+                "File": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Module"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Module"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Module/all": {
+      "get": {
+        "tags": [
+          "Module"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Module/course/{courseId}": {
+      "get": {
+        "tags": [
+          "Module"
+        ],
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Notifications": {
+      "get": {
+        "tags": [
+          "Notifications"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Notifications/{id}/read": {
+      "patch": {
+        "tags": [
+          "Notifications"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Users/{id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  },
+                  "is_active": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "encoding": {
+                "email": {
+                  "style": "form"
+                },
+                "role": {
+                  "style": "form"
+                },
+                "is_active": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Users/{id}/toggle": {
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Course": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "trainerId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "visibility": {
+            "type": "string",
+            "nullable": true
+          },
+          "isApproved": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "courseApprovals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourseApproval"
+            },
+            "nullable": true
+          },
+          "courseTakedownRequests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourseTakedownRequest"
+            },
+            "nullable": true
+          },
+          "feedbacks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Feedback"
+            },
+            "nullable": true
+          },
+          "modules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Module"
+            },
+            "nullable": true
+          },
+          "trainer": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CourseApproval": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "courseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "requestedBy": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "requestedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "respondedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "course": {
+            "$ref": "#/components/schemas/Course"
+          },
+          "requestedByNavigation": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CourseTakedownRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "courseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "requestedBy": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "requestedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "respondedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "course": {
+            "$ref": "#/components/schemas/Course"
+          },
+          "requestedByNavigation": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Feedback": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "learnerId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "courseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "moduleId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "submittedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "rating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "course": {
+            "$ref": "#/components/schemas/Course"
+          },
+          "learner": {
+            "$ref": "#/components/schemas/User"
+          },
+          "module": {
+            "$ref": "#/components/schemas/Module"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Module": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "courseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "difficulty": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "filePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "course": {
+            "$ref": "#/components/schemas/Course"
+          },
+          "feedbacks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Feedback"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Notification": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "isRead": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Passwordreset": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "token": {
+            "type": "string",
+            "nullable": true
+          },
+          "sentAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "expiryTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Passwordtoken": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "token": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiryTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sentAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "passwordHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "courseApprovals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourseApproval"
+            },
+            "nullable": true
+          },
+          "courseTakedownRequests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourseTakedownRequest"
+            },
+            "nullable": true
+          },
+          "courses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Course"
+            },
+            "nullable": true
+          },
+          "feedbacks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Feedback"
+            },
+            "nullable": true
+          },
+          "notifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            },
+            "nullable": true
+          },
+          "passwordresets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Passwordreset"
+            },
+            "nullable": true
+          },
+          "passwordtokens": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Passwordtoken"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Enter your JWT token below.\nExample: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+        "scheme": "Bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
