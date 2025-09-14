@@ -120,7 +120,7 @@
               "RelativeDocumentMoniker": "Mini_LMS\\Program.cs",
               "ToolTip": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Program.cs",
               "RelativeToolTip": "Mini_LMS\\Program.cs",
-              "ViewState": "AgIAAHAAAAAAAAAAAAAqwI8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHkAAAAAAAAAAAAqwJgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-11T05:25:54.091Z",
               "IsPinned": true,
@@ -136,8 +136,7 @@
               "RelativeToolTip": "Mini_LMS\\Controllers\\EnrollmentController.cs",
               "ViewState": "AgIAAE4AAAAAAAAAAAAmwGwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T08:29:23.109Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-14T08:29:23.109Z"
             },
             {
               "$type": "Document",
@@ -173,8 +172,7 @@
               "RelativeToolTip": "Mini_LMS\\Controllers\\CourseController.cs",
               "ViewState": "AgIAAIMAAAAAAAAAAAAwwKsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T12:21:23.58Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-12T12:21:23.58Z"
             },
             {
               "$type": "Document",
@@ -198,8 +196,7 @@
               "RelativeToolTip": "Mini_LMS\\Controllers\\ModuleController.cs",
               "ViewState": "AgIAAJAAAAAAAAAAAAAmwL0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T12:23:37.512Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-12T12:23:37.512Z"
             },
             {
               "$type": "Document",

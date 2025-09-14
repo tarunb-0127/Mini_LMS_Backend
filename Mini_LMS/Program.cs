@@ -4,13 +4,14 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.FileProviders;
 using Mini_LMS.Helpers;
 using Mini_LMS.Models;
 using Mini_LMS.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1) Register Helpers, Services, DbContext
+// 1?? Register Helpers, Services, DbContext
 builder.Services.AddScoped<JwtHelper>();
 builder.Services.AddScoped<EmailService>();
 
@@ -21,7 +22,7 @@ builder.Services.AddDbContext<MiniLMSContext>(opts =>
     )
 );
 
-// 2) Configure Controllers & JSON options
+// 2?? Configure Controllers & JSON options
 builder.Services.AddControllers()
     .AddJsonOptions(opts =>
     {
@@ -30,13 +31,12 @@ builder.Services.AddControllers()
         opts.JsonSerializerOptions.WriteIndented = true;
     });
 
-// 3) Enable Swagger with Bearer support
+// 3?? Enable Swagger with Bearer support
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new() { Title = "MiniLMS API", Version = "v1" });
 
-    // Define the Bearer scheme
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -47,7 +47,6 @@ builder.Services.AddSwaggerGen(options =>
         Description = "Enter your JWT token (prefixed with 'Bearer ')"
     });
 
-    // Apply the scheme globally
     options.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
@@ -62,7 +61,7 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-// 4) Configure JWT Authentication & Claim Mapping
+// 4?? Configure JWT Authentication & Claim Mapping
 var jwtKey = builder.Configuration["Jwt:Key"];
 var jwtIssuer = builder.Configuration["Jwt:Issuer"];
 var jwtAud = builder.Configuration["Jwt:Audience"];
@@ -78,20 +77,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-
             ValidIssuer = jwtIssuer,
             ValidAudience = jwtAud,
             IssuerSigningKey = new SymmetricSecurityKey(key),
-
-            // Ensure ASP-NET uses these claim types
             NameClaimType = ClaimTypes.NameIdentifier,
             RoleClaimType = ClaimTypes.Role,
-            // If you also need to read ClaimTypes.Email:
-            // (the controller does User.FindFirst(ClaimTypes.Email))
             RequireExpirationTime = true
         };
 
-        // Optional: log token validation failures
         options.Events = new JwtBearerEvents
         {
             OnAuthenticationFailed = ctx =>
@@ -102,15 +95,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-// 5) Configure Authorization (optional policies)
+// 5?? Configure Authorization
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("TrainerOnly", policy =>
-        policy.RequireRole("Trainer"));
+    options.AddPolicy("TrainerOnly", policy => policy.RequireRole("Trainer"));
 });
 
-
-// 6) CORS for your React app
+// 6?? CORS for React
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", policy =>
@@ -121,10 +112,9 @@ builder.Services.AddCors(options =>
     });
 });
 
-
 var app = builder.Build();
 
-// 7) Middleware pipeline
+// 7?? Middleware pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -135,9 +125,28 @@ app.UseCors("AllowReactApp");
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();  // must come before UseAuthorization
+app.UseAuthentication();
 app.UseAuthorization();
 
+// 8?? Serve static files from uploads folder
+var uploadsPath = Path.Combine(app.Environment.ContentRootPath, "uploads");
+
+// Create folder if not exists
+if (!Directory.Exists(uploadsPath))
+    Directory.CreateDirectory(uploadsPath);
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(uploadsPath),
+    RequestPath = "/uploads",
+    ServeUnknownFileTypes = true, // serve mp4, pdf, etc.
+    DefaultContentType = "application/octet-stream",
+});
+
+// Optional: Log uploaded files for debugging
+Console.WriteLine("Uploads folder mapped to: " + uploadsPath);
+
+// 9?? Map controllers
 app.MapControllers();
 
 app.Run();

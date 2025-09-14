@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "d1AjfXhlDCQ6Eb4mfcWex6guKYHko4zBrJpX6T1h8fc=",
+  "Hash": "jLFmz6WaG6ewnXfTZdKvdwQfYgrme2ht3OiG2sPjP4I=",
   "Source": "Mini_LMS",
   "BasePath": "_content/Mini_LMS",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\e69db40d-4d5d-4da7-b2e4-0cd9566b1e04_Full React Tutorial #1 - Introduction.mp4"
+    },
+    {
+      "Identity": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\wwwroot\\uploads\\ef8b49a0-1b41-4c57-976e-9625119715d4_e69db40d-4d5d-4da7-b2e4-0cd9566b1e04_Full React Tutorial #1 - Introduction.mp4",
+      "SourceId": "Mini_LMS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\wwwroot\\",
+      "BasePath": "_content/Mini_LMS",
+      "RelativePath": "uploads/ef8b49a0-1b41-4c57-976e-9625119715d4_e69db40d-4d5d-4da7-b2e4-0cd9566b1e04_Full React Tutorial #1 - Introduction.mp4",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\ef8b49a0-1b41-4c57-976e-9625119715d4_e69db40d-4d5d-4da7-b2e4-0cd9566b1e04_Full React Tutorial #1 - Introduction.mp4"
     }
   ]
 }
