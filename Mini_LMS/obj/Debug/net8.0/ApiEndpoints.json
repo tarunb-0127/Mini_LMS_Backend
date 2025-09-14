@@ -159,6 +159,11 @@
     "Order": 0,
     "Parameters": [
       {
+        "Name": "username",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
         "Name": "email",
         "Type": "System.String",
         "IsRequired": false
@@ -204,6 +209,27 @@
   },
   {
     "ContainingType": "Mini_LMS.Controllers.CourseController",
+    "Method": "Update",
+    "RelativePath": "api/Course/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Mini_LMS.Controllers.CourseController\u002BCourseCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Mini_LMS.Controllers.CourseController",
     "Method": "GetAll",
     "RelativePath": "api/Course/all",
     "HttpMethod": "GET",
@@ -221,300 +247,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "TrainerId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Name",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Type",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Duration",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Visibility",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsApproved",
-        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "CreatedAt",
-        "Type": "System.DateTime",
-        "IsRequired": false
-      },
-      {
-        "Name": "UpdatedAt",
-        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "CourseApprovals",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.CourseApproval, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "CourseTakedownRequests",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.CourseTakedownRequest, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Feedbacks",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.Feedback, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Modules",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.Module, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.Id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.Email",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.Username",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.PasswordHash",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.Role",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.IsActive",
-        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.CreatedAt",
-        "Type": "System.DateTime",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.UpdatedAt",
-        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.CourseApprovals",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.CourseApproval, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.CourseTakedownRequests",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.CourseTakedownRequest, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.Courses",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.Course, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.Feedbacks",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.Feedback, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.Notifications",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.Notification, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.Passwordresets",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.Passwordreset, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.Passwordtokens",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.Passwordtoken, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Mini_LMS.Controllers.CourseController",
-    "Method": "Edit",
-    "RelativePath": "api/Course/edit/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Name": "dto",
+        "Type": "Mini_LMS.Controllers.CourseController\u002BCourseCreateDTO",
         "IsRequired": true
-      },
-      {
-        "Name": "Id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "TrainerId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Name",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Type",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Duration",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Visibility",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsApproved",
-        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "CreatedAt",
-        "Type": "System.DateTime",
-        "IsRequired": false
-      },
-      {
-        "Name": "UpdatedAt",
-        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "CourseApprovals",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.CourseApproval, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "CourseTakedownRequests",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.CourseTakedownRequest, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Feedbacks",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.Feedback, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Modules",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.Module, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.Id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.Email",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.Username",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.PasswordHash",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.Role",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.IsActive",
-        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.CreatedAt",
-        "Type": "System.DateTime",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.UpdatedAt",
-        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.CourseApprovals",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.CourseApproval, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.CourseTakedownRequests",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.CourseTakedownRequest, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.Courses",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.Course, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.Feedbacks",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.Feedback, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.Notifications",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.Notification, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.Passwordresets",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.Passwordreset, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Trainer.Passwordtokens",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Mini_LMS.Models.Passwordtoken, Mini_LMS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -528,14 +263,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "courseId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "reason",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "dto",
+        "Type": "Mini_LMS.Controllers.CourseController\u002BTakedownRequestDTO",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

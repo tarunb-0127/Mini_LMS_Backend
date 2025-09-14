@@ -33,4 +33,14 @@
         public string ConfirmPassword { get; set; }
     }
 
+    public class CourseCreateDTO
+    {
+        public int TrainerId { get; set; }
+        public string Name { get; set; }
+        public string? Type { get; set; }
+        public int? Duration { get; set; }
+        public string? Visibility { get; set; }
+    }
+
+
 }

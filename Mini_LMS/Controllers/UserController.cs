@@ -15,6 +15,8 @@ namespace Mini_LMS.Controllers
             _db = db;
         }
 
+
+
         // ✅ Get all users
         [HttpGet]
         public async Task<IActionResult> GetUsers()
@@ -131,5 +133,7 @@ namespace Mini_LMS.Controllers
                 }
             });
         }
+
+
     }
 }

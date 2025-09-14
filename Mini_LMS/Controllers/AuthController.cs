@@ -76,10 +76,18 @@ namespace Mini_LMS.Controllers
         }
 
         // ─── USER REGISTRATION ──────────────────────────────────────────
+        // ─── USER REGISTRATION ──────────────────────────────────────────
         [HttpPost("register")]
         [AllowAnonymous]
-        public async Task<IActionResult> Register([FromForm] string email, [FromForm] string password, [FromForm] string role)
+        public async Task<IActionResult> Register(
+            [FromForm] string username,   // <-- added username
+            [FromForm] string email,
+            [FromForm] string password,
+            [FromForm] string role)
         {
+            if (string.IsNullOrWhiteSpace(username))
+                return BadRequest(new { message = "Username is required." });
+
             if (await _db.Users.AnyAsync(u => u.Email == email))
                 return Conflict(new { message = "Email already registered." });
 
@@ -88,6 +96,7 @@ namespace Mini_LMS.Controllers
 
             var user = new User
             {
+                Username = username,                              // save username
                 Email = email,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(password),
                 Role = role,
@@ -97,8 +106,10 @@ namespace Mini_LMS.Controllers
 
             _db.Users.Add(user);
             await _db.SaveChangesAsync();
-            return Ok(new { message = $"{role} registered successfully." });
+
+            return Ok(new { message = $"{role} '{username}' registered successfully." });
         }
+
 
         // ─── PASSWORD RESET REQUEST ─────────────────────────────────────
         [HttpPost("password-reset/request")]

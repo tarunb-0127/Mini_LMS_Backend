@@ -1,3 +1,5 @@
+using System.Security.Claims;
+using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -5,26 +7,36 @@ using Microsoft.OpenApi.Models;
 using Mini_LMS.Helpers;
 using Mini_LMS.Models;
 using Mini_LMS.Services;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// 1) Register Helpers, Services, DbContext
 builder.Services.AddScoped<JwtHelper>();
+builder.Services.AddScoped<EmailService>();
 
-// ??? Add Controllers with JSON Options ?????????????????????????????
-builder.Services.AddControllers().AddJsonOptions(options =>
-{
-    options.JsonSerializerOptions.ReferenceHandler =
-        System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
-    options.JsonSerializerOptions.WriteIndented = true;
-});
+builder.Services.AddDbContext<MiniLMSContext>(opts =>
+    opts.UseMySql(
+        builder.Configuration.GetConnectionString("Default"),
+        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("Default"))
+    )
+);
 
-// ??? Swagger Configuration with JWT Support ????????????????????????
+// 2) Configure Controllers & JSON options
+builder.Services.AddControllers()
+    .AddJsonOptions(opts =>
+    {
+        opts.JsonSerializerOptions.ReferenceHandler =
+            System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+        opts.JsonSerializerOptions.WriteIndented = true;
+    });
+
+// 3) Enable Swagger with Bearer support
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new() { Title = "MiniLMS API", Version = "v1" });
 
+    // Define the Bearer scheme
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -32,16 +44,15 @@ builder.Services.AddSwaggerGen(options =>
         Scheme = "Bearer",
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
-        Description = "Enter your JWT token below.\nExample: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        Description = "Enter your JWT token (prefixed with 'Bearer ')"
     });
 
+    // Apply the scheme globally
     options.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
+            new OpenApiSecurityScheme {
+                Reference = new OpenApiReference {
                     Type = ReferenceType.SecurityScheme,
                     Id = "Bearer"
                 }
@@ -51,40 +62,55 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-// ??? Email Service ?????????????????????????????????????????????????
-builder.Services.AddScoped<EmailService>();
+// 4) Configure JWT Authentication & Claim Mapping
+var jwtKey = builder.Configuration["Jwt:Key"];
+var jwtIssuer = builder.Configuration["Jwt:Issuer"];
+var jwtAud = builder.Configuration["Jwt:Audience"];
 
-// ??? Database Context ??????????????????????????????????????????????
-builder.Services.AddDbContext<MiniLMSContext>(opts =>
-    opts.UseMySql(
-        builder.Configuration.GetConnectionString("Default"),
-        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("Default"))
-    )
-);
-
-// ??? JWT Authentication ????????????????????????????????????????????
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
+        var key = Encoding.UTF8.GetBytes(jwtKey);
 
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(
-            Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-    };
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+
+            ValidIssuer = jwtIssuer,
+            ValidAudience = jwtAud,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+
+            // Ensure ASP-NET uses these claim types
+            NameClaimType = ClaimTypes.NameIdentifier,
+            RoleClaimType = ClaimTypes.Role,
+            // If you also need to read ClaimTypes.Email:
+            // (the controller does User.FindFirst(ClaimTypes.Email))
+            RequireExpirationTime = true
+        };
+
+        // Optional: log token validation failures
+        options.Events = new JwtBearerEvents
+        {
+            OnAuthenticationFailed = ctx =>
+            {
+                Console.WriteLine($"JWT Error: {ctx.Exception.Message}");
+                return Task.CompletedTask;
+            }
+        };
+    });
+
+// 5) Configure Authorization (optional policies)
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("TrainerOnly", policy =>
+        policy.RequireRole("Trainer"));
 });
 
-// ??? CORS Policy ???????????????????????????????????????????????????
+
+// 6) CORS for your React app
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", policy =>
@@ -95,9 +121,10 @@ builder.Services.AddCors(options =>
     });
 });
 
+
 var app = builder.Build();
 
-// ??? Middleware Pipeline ???????????????????????????????????????????
+// 7) Middleware pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -108,7 +135,7 @@ app.UseCors("AllowReactApp");
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication(); // ?? Must come before Authorization
+app.UseAuthentication();  // must come before UseAuthorization
 app.UseAuthorization();
 
 app.MapControllers();

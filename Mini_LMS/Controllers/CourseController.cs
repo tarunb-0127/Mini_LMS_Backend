@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Mini_LMS.Models;
@@ -19,22 +20,54 @@ namespace Mini_LMS.Controllers
             _email = email;
         }
 
+        // DTOs
+        public class CourseCreateDTO
+        {
+            public string Name { get; set; } = null!;
+            public string? Type { get; set; }
+            public int? Duration { get; set; }
+            public string? Visibility { get; set; }
+        }
+
+        public class TakedownRequestDTO
+        {
+            public int CourseId { get; set; }
+            public string Reason { get; set; } = null!;
+        }
+
         // 🔐 Only Trainers can create courses
         [Authorize(Roles = "Trainer")]
         [HttpPost("create")]
-        public async Task<IActionResult> Create([FromForm] Course course)
+        public async Task<IActionResult> Create([FromBody] CourseCreateDTO dto)
         {
-            course.CreatedAt = DateTime.UtcNow;
-            course.UpdatedAt = DateTime.UtcNow;
+            // Get trainer email from JWT claims
+            var trainerEmail = User.FindFirst(ClaimTypes.Email)?.Value ?? User.FindFirst("email")?.Value;
+            if (string.IsNullOrEmpty(trainerEmail))
+                return Unauthorized(new { message = "Trainer not found or not authorized." });
+
+            // Fetch trainer from DB
+            var trainer = await _db.Users.SingleOrDefaultAsync(u => u.Email == trainerEmail && u.Role == "Trainer");
+            if (trainer == null)
+                return Unauthorized(new { message = "Trainer not found or not authorized." });
+
+            // Create course
+            var course = new Course
+            {
+                TrainerId = trainer.Id,
+                Name = dto.Name,
+                Type = dto.Type,
+                Duration = dto.Duration,
+                Visibility = dto.Visibility ?? "Public",
+                IsApproved = false,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            };
 
             _db.Courses.Add(course);
             await _db.SaveChangesAsync();
 
             // Notify learners
-            var learners = await _db.Users
-                .Where(u => u.Role == "Learner" && u.IsActive == true)
-                .ToListAsync();
-
+            var learners = await _db.Users.Where(u => u.Role == "Learner" && u.IsActive == true).ToListAsync();
             foreach (var learner in learners)
             {
                 _db.Notifications.Add(new Notification
@@ -53,106 +86,89 @@ namespace Mini_LMS.Controllers
             return Ok(course);
         }
 
-        // 🔐 Only Trainers can update courses
-        [Authorize(Roles = "Trainer")]
-        [HttpPut("edit/{id}")]
-        public async Task<IActionResult> Edit(int id, [FromForm] Course updated)
-        {
-            var course = await _db.Courses.FindAsync(id);
-            if (course == null)
-                return NotFound();
-
-            course.Name = updated.Name;
-            course.Type = updated.Type;
-            course.Duration = updated.Duration;
-            course.Visibility = updated.Visibility;
-            course.UpdatedAt = DateTime.UtcNow;
-
-            await _db.SaveChangesAsync();
-
-            // Notify learners
-            var learners = await _db.Users
-                .Where(u => u.Role == "Learner" && u.IsActive == true)
-                .ToListAsync();
-
-            foreach (var learner in learners)
-            {
-                _db.Notifications.Add(new Notification
-                {
-                    UserId = learner.Id,
-                    Type = "CourseUpdated",
-                    Message = $"Course '{course.Name}' has been updated.",
-                    IsRead = false,
-                    CreatedAt = DateTime.UtcNow
-                });
-
-                await _email.SendCourseUpdateEmailAsync(learner.Email, course.Name);
-            }
-
-            await _db.SaveChangesAsync();
-            return Ok(course);
-        }
-
         // 👁️ Any authenticated user can view all courses
         [Authorize]
         [HttpGet("all")]
         public async Task<IActionResult> GetAll()
         {
-            var courses = await _db.Courses
-                .Include(c => c.Trainer)
-                .ToListAsync();
+            var courses = await _db.Courses.Include(c => c.Trainer).ToListAsync();
             return Ok(courses);
         }
 
         // 🔐 Trainers can request course takedown
         [Authorize(Roles = "Trainer")]
         [HttpPost("request-takedown")]
-        public async Task<IActionResult> RequestTakedown([FromForm] int courseId, [FromForm] string reason)
+        public async Task<IActionResult> RequestTakedown([FromBody] TakedownRequestDTO dto)
         {
-            var trainerEmail = User.Identity?.Name;
+            var trainerEmail = User.FindFirst(ClaimTypes.Email)?.Value ?? User.FindFirst("email")?.Value;
+            if (string.IsNullOrEmpty(trainerEmail))
+                return Unauthorized(new { message = "Trainer not found or not authorized." });
+
             var trainer = await _db.Users.SingleOrDefaultAsync(u => u.Email == trainerEmail && u.Role == "Trainer");
-
             if (trainer == null)
-                return Unauthorized();
+                return Unauthorized(new { message = "Trainer not found or not authorized." });
 
-            var course = await _db.Courses.FindAsync(courseId);
+            var course = await _db.Courses.FindAsync(dto.CourseId);
             if (course == null)
                 return NotFound(new { message = "Course not found." });
 
-            // Save takedown request (optional: create a CourseTakedownRequest table if needed)
             var admins = await _db.Users.Where(u => u.Role == "Admin").ToListAsync();
-
             foreach (var admin in admins)
             {
                 _db.Notifications.Add(new Notification
                 {
                     UserId = admin.Id,
                     Type = "TakedownRequested",
-                    Message = $"Trainer '{trainer.Email}' requested takedown of course '{course.Name}'. Reason: {reason}",
+                    Message = $"Trainer '{trainer.Email}' requested takedown of course '{course.Name}'. Reason: {dto.Reason}",
                     IsRead = false,
                     CreatedAt = DateTime.UtcNow
                 });
 
-                // ✅ Use your existing EmailService
-                await _email.SendCourseUpdateEmailAsync(admin.Email, $"Takedown Request: {course.Name}\nReason: {reason}");
+                await _email.SendCourseUpdateEmailAsync(admin.Email, $"Takedown Request: {course.Name}\nReason: {dto.Reason}");
             }
 
             await _db.SaveChangesAsync();
             return Ok(new { message = "Takedown request submitted successfully." });
         }
 
-
         // 👁️ Any authenticated user can view a course
         [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var course = await _db.Courses
-                .Include(c => c.Trainer)
-                .FirstOrDefaultAsync(c => c.Id == id);
-            if (course == null)
-                return NotFound();
+            var course = await _db.Courses.Include(c => c.Trainer).FirstOrDefaultAsync(c => c.Id == id);
+            if (course == null) return NotFound();
             return Ok(course);
         }
+
+        [Authorize(Roles = "Trainer")]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] CourseCreateDTO dto)
+        {
+            // 1) grab trainer email from JWT
+            var email = User.FindFirst(ClaimTypes.Email)?.Value
+                        ?? User.FindFirst("email")?.Value;
+            if (email == null)
+                return Unauthorized(new { message = "Not authorized." });
+
+            // 2) fetch the course and ensure this trainer owns it
+            var course = await _db.Courses
+                .Include(c => c.Trainer)
+                .SingleOrDefaultAsync(c => c.Id == id && c.Trainer.Email == email);
+
+            if (course == null)
+                return NotFound(new { message = "Course not found or you’re not its trainer." });
+
+            // 3) apply updates
+            course.Name = dto.Name;
+            course.Type = dto.Type;
+            course.Duration = dto.Duration;
+            course.Visibility = dto.Visibility ?? course.Visibility;
+            course.UpdatedAt = DateTime.UtcNow;
+
+            await _db.SaveChangesAsync();
+            return Ok(course);
+        }
+
     }
 }
