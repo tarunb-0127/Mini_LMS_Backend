@@ -9,7 +9,7 @@ public partial class CourseTakedownRequest
 
     public int CourseId { get; set; }
 
-    public int  RequestedBy { get; set; }
+    public int RequestedBy { get; set; }
 
     public string? Reason { get; set; }
 

@@ -22,7 +22,11 @@ public partial class MiniLMSContext : DbContext
 
     public virtual DbSet<CourseTakedownRequest> CourseTakedownRequests { get; set; }
 
+    public virtual DbSet<Efmigrationshistory> Efmigrationshistories { get; set; }
+
     public virtual DbSet<Emailotp> Emailotps { get; set; }
+
+    public virtual DbSet<Enrollment> Enrollments { get; set; }
 
     public virtual DbSet<Feedback> Feedbacks { get; set; }
 
@@ -38,7 +42,7 @@ public partial class MiniLMSContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=localhost;database=minilmsdb;user=root;password=admin;", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.41-mysql"));
+        => optionsBuilder.UseMySql("server=localhost;port=3306;database=minilmsdb;user=root;password=admin", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.40-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -102,9 +106,9 @@ public partial class MiniLMSContext : DbContext
 
             entity.ToTable("course_takedown_requests");
 
-            entity.HasIndex(e => e.CourseId, "CourseId");
+            entity.HasIndex(e => e.CourseId, "CourseId1");
 
-            entity.HasIndex(e => e.RequestedBy, "RequestedBy");
+            entity.HasIndex(e => e.RequestedBy, "RequestedBy1");
 
             entity.Property(e => e.Reason).HasColumnType("text");
             entity.Property(e => e.RequestedAt).HasColumnType("datetime");
@@ -124,6 +128,16 @@ public partial class MiniLMSContext : DbContext
                 .HasConstraintName("course_takedown_requests_ibfk_2");
         });
 
+        modelBuilder.Entity<Efmigrationshistory>(entity =>
+        {
+            entity.HasKey(e => e.MigrationId).HasName("PRIMARY");
+
+            entity.ToTable("__efmigrationshistory");
+
+            entity.Property(e => e.MigrationId).HasMaxLength(150);
+            entity.Property(e => e.ProductVersion).HasMaxLength(32);
+        });
+
         modelBuilder.Entity<Emailotp>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
@@ -137,13 +151,39 @@ public partial class MiniLMSContext : DbContext
             entity.Property(e => e.SentAt).HasColumnType("datetime");
         });
 
+        modelBuilder.Entity<Enrollment>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("enrollments");
+
+            entity.HasIndex(e => e.CourseId, "fk_enroll_course");
+
+            entity.HasIndex(e => new { e.LearnerId, e.CourseId }, "uq_learner_course").IsUnique();
+
+            entity.Property(e => e.EnrolledAt)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasColumnType("datetime");
+            entity.Property(e => e.Status)
+                .HasDefaultValueSql("'Active'")
+                .HasColumnType("enum('Active','Completed','Dropped')");
+
+            entity.HasOne(d => d.Course).WithMany(p => p.Enrollments)
+                .HasForeignKey(d => d.CourseId)
+                .HasConstraintName("fk_enroll_course");
+
+            entity.HasOne(d => d.Learner).WithMany(p => p.Enrollments)
+                .HasForeignKey(d => d.LearnerId)
+                .HasConstraintName("fk_enroll_user");
+        });
+
         modelBuilder.Entity<Feedback>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
             entity.ToTable("feedbacks");
 
-            entity.HasIndex(e => e.CourseId, "CourseId");
+            entity.HasIndex(e => e.CourseId, "CourseId2");
 
             entity.HasIndex(e => e.LearnerId, "LearnerId");
 
@@ -173,7 +213,7 @@ public partial class MiniLMSContext : DbContext
 
             entity.ToTable("modules");
 
-            entity.HasIndex(e => e.CourseId, "CourseId");
+            entity.HasIndex(e => e.CourseId, "CourseId3");
 
             entity.Property(e => e.CreatedAt).HasColumnType("datetime");
             entity.Property(e => e.Description).HasColumnType("text");
@@ -213,7 +253,7 @@ public partial class MiniLMSContext : DbContext
 
             entity.ToTable("passwordresets");
 
-            entity.HasIndex(e => e.UserId, "UserId");
+            entity.HasIndex(e => e.UserId, "UserId1");
 
             entity.Property(e => e.Email).HasMaxLength(255);
             entity.Property(e => e.ExpiryTime).HasColumnType("datetime");
@@ -232,7 +272,7 @@ public partial class MiniLMSContext : DbContext
 
             entity.ToTable("passwordtokens");
 
-            entity.HasIndex(e => e.UserId, "UserId");
+            entity.HasIndex(e => e.UserId, "UserId2");
 
             entity.Property(e => e.Email).HasMaxLength(255);
             entity.Property(e => e.ExpiryTime).HasColumnType("datetime");

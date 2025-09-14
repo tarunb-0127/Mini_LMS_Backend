@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Coding\\Mini_LMS_Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FE465262-6E5E-42DE-A6C0-9994E817007F}|Mini_LMS\\Mini_LMS.csproj|c:\\coding\\mini_lms_backend\\mini_lms\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE465262-6E5E-42DE-A6C0-9994E817007F}|Mini_LMS\\Mini_LMS.csproj|solutionrelative:mini_lms\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FE465262-6E5E-42DE-A6C0-9994E817007F}|Mini_LMS\\Mini_LMS.csproj|c:\\coding\\mini_lms_backend\\mini_lms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FE465262-6E5E-42DE-A6C0-9994E817007F}|Mini_LMS\\Mini_LMS.csproj|solutionrelative:mini_lms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE465262-6E5E-42DE-A6C0-9994E817007F}|Mini_LMS\\Mini_LMS.csproj|c:\\coding\\mini_lms_backend\\mini_lms\\controllers\\modulecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE465262-6E5E-42DE-A6C0-9994E817007F}|Mini_LMS\\Mini_LMS.csproj|solutionrelative:mini_lms\\controllers\\modulecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE465262-6E5E-42DE-A6C0-9994E817007F}|Mini_LMS\\Mini_LMS.csproj|c:\\coding\\mini_lms_backend\\mini_lms\\controllers\\enrollmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE465262-6E5E-42DE-A6C0-9994E817007F}|Mini_LMS\\Mini_LMS.csproj|solutionrelative:mini_lms\\controllers\\enrollmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE465262-6E5E-42DE-A6C0-9994E817007F}|Mini_LMS\\Mini_LMS.csproj|c:\\coding\\mini_lms_backend\\mini_lms\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE465262-6E5E-42DE-A6C0-9994E817007F}|Mini_LMS\\Mini_LMS.csproj|solutionrelative:mini_lms\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FE465262-6E5E-42DE-A6C0-9994E817007F}|Mini_LMS\\Mini_LMS.csproj|c:\\coding\\mini_lms_backend\\mini_lms\\helpers\\jwthelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{FE465262-6E5E-42DE-A6C0-9994E817007F}|Mini_LMS\\Mini_LMS.csproj|c:\\coding\\mini_lms_backend\\mini_lms\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FE465262-6E5E-42DE-A6C0-9994E817007F}|Mini_LMS\\Mini_LMS.csproj|solutionrelative:mini_lms\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE465262-6E5E-42DE-A6C0-9994E817007F}|Mini_LMS\\Mini_LMS.csproj|c:\\coding\\mini_lms_backend\\mini_lms\\controllers\\modulecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE465262-6E5E-42DE-A6C0-9994E817007F}|Mini_LMS\\Mini_LMS.csproj|solutionrelative:mini_lms\\controllers\\modulecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FE465262-6E5E-42DE-A6C0-9994E817007F}|Mini_LMS\\Mini_LMS.csproj|c:\\coding\\mini_lms_backend\\mini_lms\\controllers\\learnercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -106,17 +110,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 348,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Program.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Program.cs",
               "ToolTip": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Program.cs",
               "RelativeToolTip": "Mini_LMS\\Program.cs",
-              "ViewState": "AgIAAEkAAAAAAAAAAAAqwI8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAqwI8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-11T05:25:54.091Z",
               "IsPinned": true,
@@ -125,6 +129,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "EnrollmentController.cs",
+              "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Controllers\\EnrollmentController.cs",
+              "RelativeDocumentMoniker": "Mini_LMS\\Controllers\\EnrollmentController.cs",
+              "ToolTip": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Controllers\\EnrollmentController.cs",
+              "RelativeToolTip": "Mini_LMS\\Controllers\\EnrollmentController.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAmwGwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-14T08:29:23.109Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "JwtHelper.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Helpers\\JwtHelper.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Helpers\\JwtHelper.cs",
@@ -132,12 +149,11 @@
               "RelativeToolTip": "Mini_LMS\\Helpers\\JwtHelper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T06:10:46.27Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-14T06:10:46.27Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "Notification.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Models\\Notification.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Models\\Notification.cs",
@@ -149,7 +165,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "CourseController.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Controllers\\CourseController.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Controllers\\CourseController.cs",
@@ -162,7 +178,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Controllers\\UserController.cs",
@@ -170,25 +186,24 @@
               "RelativeToolTip": "Mini_LMS\\Controllers\\UserController.cs",
               "ViewState": "AgIAAHIAAAAAAAAAAAAAwIgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T15:23:01.394Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T15:23:01.394Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "ModuleController.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Controllers\\ModuleController.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Controllers\\ModuleController.cs",
               "ToolTip": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Controllers\\ModuleController.cs",
               "RelativeToolTip": "Mini_LMS\\Controllers\\ModuleController.cs",
-              "ViewState": "AgIAALwAAAAAAAAAAAAiwNkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJAAAAAAAAAAAAAmwL0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-12T12:23:37.512Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "LoginController.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Controllers\\LoginController.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Controllers\\LoginController.cs",
@@ -196,12 +211,11 @@
               "RelativeToolTip": "Mini_LMS\\Controllers\\LoginController.cs",
               "ViewState": "AgIAAEIAAAAAAAAAAAAAADkAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T02:24:25.74Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-12T02:24:25.74Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Controllers\\AuthController.cs",
@@ -209,12 +223,11 @@
               "RelativeToolTip": "Mini_LMS\\Controllers\\AuthController.cs",
               "ViewState": "AgIAALEAAAAAAAAAAAA/wLQAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T10:36:27.297Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T10:36:27.297Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "Emailotp.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Models\\Emailotp.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Models\\Emailotp.cs",
@@ -226,7 +239,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\appsettings.json",
               "RelativeDocumentMoniker": "Mini_LMS\\appsettings.json",
@@ -234,12 +247,11 @@
               "RelativeToolTip": "Mini_LMS\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-11T06:40:34.079Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T06:40:34.079Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "LearnerController.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Controllers\\LearnerController.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Controllers\\LearnerController.cs",
@@ -247,12 +259,11 @@
               "RelativeToolTip": "Mini_LMS\\Controllers\\LearnerController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T03:18:11.225Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-14T03:18:11.225Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "DTOs.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\DTOs\\DTOs.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\DTOs\\DTOs.cs",
@@ -260,12 +271,11 @@
               "RelativeToolTip": "Mini_LMS\\DTOs\\DTOs.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAQwCsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T04:03:33.937Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-14T04:03:33.937Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "Module.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Models\\Module.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Models\\Module.cs",
@@ -277,7 +287,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "Feedback.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Models\\Feedback.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Models\\Feedback.cs",
@@ -289,7 +299,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "MiniLMSContext.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Models\\MiniLMSContext.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Models\\MiniLMSContext.cs",
@@ -297,12 +307,11 @@
               "RelativeToolTip": "Mini_LMS\\Models\\MiniLMSContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADgAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T02:04:06.522Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-14T02:04:06.522Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "CourseApproval.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Models\\CourseApproval.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Models\\CourseApproval.cs",
@@ -314,7 +323,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "CourseTakedownRequest.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Models\\CourseTakedownRequest.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Models\\CourseTakedownRequest.cs",
@@ -326,7 +335,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "Passwordreset.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Models\\Passwordreset.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Models\\Passwordreset.cs",
@@ -338,7 +347,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "Passwordtoken.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Models\\Passwordtoken.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Models\\Passwordtoken.cs",
@@ -350,7 +359,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Course.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Models\\Course.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Models\\Course.cs",
@@ -362,7 +371,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Models\\User.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Models\\User.cs",
@@ -374,7 +383,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "EmailService.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Services\\EmailService.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Services\\EmailService.cs",
@@ -386,7 +395,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "Mini_LMS.csproj",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Mini_LMS.csproj",
               "RelativeDocumentMoniker": "Mini_LMS\\Mini_LMS.csproj",
@@ -398,7 +407,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Coding\\Mini_LMS_Backend\\Mini_LMS\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Mini_LMS\\Controllers\\HomeController.cs",

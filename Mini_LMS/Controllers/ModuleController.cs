@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Mini_LMS.Models;
 using Mini_LMS.Services;
+using System.Security.Claims;
 
 namespace Mini_LMS.Controllers
 {
@@ -21,23 +22,23 @@ namespace Mini_LMS.Controllers
             _email = email;
         }
 
+        // DTOs
         public class ModuleCreateDto
         {
             public int CourseId { get; set; }
-            public string Name { get; set; } = null!;
-            public string? Difficulty { get; set; }
-            public string? Description { get; set; }
+            public string Title { get; set; } = null!;
+            public string? Content { get; set; }
             public IFormFile? File { get; set; }
         }
 
         public class ModuleUpdateDto
         {
-            public string Name { get; set; } = null!;
-            public string? Difficulty { get; set; }
-            public string? Description { get; set; }
+            public string Title { get; set; } = null!;
+            public string? Content { get; set; }
             public IFormFile? File { get; set; }
         }
 
+        // Helper: Save uploaded file
         private async Task<string?> SaveFileAsync(IFormFile file)
         {
             if (file == null || file.Length == 0) return null;
@@ -55,22 +56,33 @@ namespace Mini_LMS.Controllers
             return $"/uploads/{fileName}";
         }
 
-        // 🔐 Only Trainers can create modules
+        // Helper: Get current trainer
+        private async Task<User?> GetTrainerAsync()
+        {
+            var email = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+            if (email == null) return null;
+            return await _db.Users.SingleOrDefaultAsync(u => u.Email == email && u.Role == "Trainer");
+        }
+
+        // 🔐 Create Module (Trainer only)
         [Authorize(Roles = "Trainer")]
         [HttpPost("create")]
         public async Task<IActionResult> CreateModule([FromForm] ModuleCreateDto dto)
         {
+            var trainer = await GetTrainerAsync();
+            if (trainer == null) return Unauthorized("Trainer not authorized");
+
             var course = await _db.Courses.FindAsync(dto.CourseId);
-            if (course == null)
-                return NotFound($"Course with Id {dto.CourseId} not found.");
+            if (course == null) return NotFound("Course not found");
+            if (course.TrainerId != trainer.Id)
+                return Unauthorized("You can only add modules to your own courses");
 
             var module = new Module
             {
                 CourseId = dto.CourseId,
-                Name = dto.Name,
-                Difficulty = dto.Difficulty,
-                Description = dto.Description,
-                FilePath = dto.File != null ? await SaveFileAsync(dto.File) : null,
+                Name = dto.Title,
+                Description = dto.Content,
+                FilePath = await SaveFileAsync(dto.File),
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             };
@@ -79,100 +91,62 @@ namespace Mini_LMS.Controllers
             await _db.SaveChangesAsync();
 
             // Notify trainer
-            var trainer = await _db.Users.FindAsync(course.TrainerId);
-            if (trainer != null)
-            {
-                _db.Notifications.Add(new Notification
-                {
-                    UserId = trainer.Id,
-                    Type = "ModuleCreated",
-                    Message = $"A new module '{module.Name}' was added to your course '{course.Name}'.",
-                    IsRead = false,
-                    CreatedAt = DateTime.UtcNow
-                });
-
-                await _email.SendCourseUpdateEmailAsync(trainer.Email, course.Name);
-                await _db.SaveChangesAsync();
-            }
+            await NotifyTrainerAsync(trainer, $"Module '{module.Name}' added to course '{course.Name}'.");
 
             return CreatedAtAction(nameof(GetModule), new { id = module.Id }, module);
         }
 
-        // 🔐 Only Trainers can update modules
+        // 🔐 Update Module
         [Authorize(Roles = "Trainer")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateModule(int id, [FromForm] ModuleUpdateDto dto)
         {
+            var trainer = await GetTrainerAsync();
+            if (trainer == null) return Unauthorized("Trainer not authorized");
+
             var module = await _db.Modules.FindAsync(id);
-            if (module == null)
-                return NotFound();
+            if (module == null) return NotFound("Module not found");
 
-            module.Name = dto.Name;
-            module.Difficulty = dto.Difficulty;
-            module.Description = dto.Description;
+            var course = await _db.Courses.FindAsync(module.CourseId);
+            if (course == null || course.TrainerId != trainer.Id)
+                return Unauthorized("You can only update modules in your own courses");
 
-            if (dto.File != null)
-                module.FilePath = await SaveFileAsync(dto.File);
-
+            module.Name = dto.Title;
+            module.Description = dto.Content;
+            if (dto.File != null) module.FilePath = await SaveFileAsync(dto.File);
             module.UpdatedAt = DateTime.UtcNow;
+
             await _db.SaveChangesAsync();
 
-            // Notify trainer
-            var course = await _db.Courses.FindAsync(module.CourseId);
-            var trainer = await _db.Users.FindAsync(course?.TrainerId);
-            if (trainer != null)
-            {
-                _db.Notifications.Add(new Notification
-                {
-                    UserId = trainer.Id,
-                    Type = "ModuleUpdated",
-                    Message = $"Module '{module.Name}' in course '{course?.Name}' was updated.",
-                    IsRead = false,
-                    CreatedAt = DateTime.UtcNow
-                });
-
-                await _email.SendCourseUpdateEmailAsync(trainer.Email, course?.Name ?? "your course");
-                await _db.SaveChangesAsync();
-            }
+            await NotifyTrainerAsync(trainer, $"Module '{module.Name}' updated in course '{course.Name}'.");
 
             return Ok(module);
         }
 
-        // 🔐 Only Trainers can delete modules
+        // 🔐 Delete Module
         [Authorize(Roles = "Trainer")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteModule(int id)
         {
+            var trainer = await GetTrainerAsync();
+            if (trainer == null) return Unauthorized("Trainer not authorized");
+
             var module = await _db.Modules.FindAsync(id);
-            if (module == null)
-                return NotFound();
+            if (module == null) return NotFound("Module not found");
 
             var course = await _db.Courses.FindAsync(module.CourseId);
-            var trainer = await _db.Users.FindAsync(course?.TrainerId);
+            if (course == null || course.TrainerId != trainer.Id)
+                return Unauthorized("You can only delete modules in your own courses");
 
             _db.Modules.Remove(module);
             await _db.SaveChangesAsync();
 
-            // Notify trainer
-            if (trainer != null)
-            {
-                _db.Notifications.Add(new Notification
-                {
-                    UserId = trainer.Id,
-                    Type = "ModuleDeleted",
-                    Message = $"Module '{module.Name}' was removed from course '{course?.Name}'.",
-                    IsRead = false,
-                    CreatedAt = DateTime.UtcNow
-                });
-
-                await _email.SendCourseUpdateEmailAsync(trainer.Email, course?.Name ?? "your course");
-                await _db.SaveChangesAsync();
-            }
+            await NotifyTrainerAsync(trainer, $"Module '{module.Name}' deleted from course '{course.Name}'.");
 
             return NoContent();
         }
 
-        // 👁️ Any authenticated user can view a module
+        // 👁️ Get single module
         [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetModule(int id)
@@ -180,26 +154,11 @@ namespace Mini_LMS.Controllers
             var module = await _db.Modules
                 .Include(m => m.Course)
                 .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (module == null)
-                return NotFound();
-
+            if (module == null) return NotFound();
             return Ok(module);
         }
 
-        // 👁️ Any authenticated user can view all modules
-        [Authorize]
-        [HttpGet("all")]
-        public async Task<IActionResult> GetAllModules()
-        {
-            var modules = await _db.Modules
-                .Include(m => m.Course)
-                .ToListAsync();
-
-            return Ok(modules);
-        }
-
-        // 👁️ Any authenticated user can view modules by course
+        // 👁️ Get all modules for a course
         [Authorize]
         [HttpGet("course/{courseId}")]
         public async Task<IActionResult> GetModulesByCourse(int courseId)
@@ -208,10 +167,23 @@ namespace Mini_LMS.Controllers
                 .Where(m => m.CourseId == courseId)
                 .ToListAsync();
 
-            if (!modules.Any())
-                return NotFound($"No modules found for course {courseId}");
+            return Ok(modules); // empty array if none
+        }
 
-            return Ok(modules);
+        // Helper: notify trainer via notification + email
+        private async Task NotifyTrainerAsync(User trainer, string message)
+        {
+            _db.Notifications.Add(new Notification
+            {
+                UserId = trainer.Id,
+                Type = "ModuleUpdate",
+                Message = message,
+                IsRead = false,
+                CreatedAt = DateTime.UtcNow
+            });
+
+            await _email.SendCourseUpdateEmailAsync(trainer.Email, message);
+            await _db.SaveChangesAsync();
         }
     }
 }

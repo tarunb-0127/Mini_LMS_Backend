@@ -27,6 +27,8 @@ public partial class Course
 
     public virtual ICollection<CourseTakedownRequest> CourseTakedownRequests { get; set; } = new List<CourseTakedownRequest>();
 
+    public virtual ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
+
     public virtual ICollection<Feedback> Feedbacks { get; set; } = new List<Feedback>();
 
     public virtual ICollection<Module> Modules { get; set; } = new List<Module>();

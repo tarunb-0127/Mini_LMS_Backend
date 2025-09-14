@@ -271,6 +271,64 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "MiniLMS.Controllers.EnrollmentController",
+    "Method": "DropEnrollment",
+    "RelativePath": "api/Enrollment/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MiniLMS.Controllers.EnrollmentController",
+    "Method": "GetLearnersForCourse",
+    "RelativePath": "api/Enrollment/course/{courseId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MiniLMS.Controllers.EnrollmentController",
+    "Method": "EnrollInCourse",
+    "RelativePath": "api/Enrollment/enroll/{courseId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MiniLMS.Controllers.EnrollmentController",
+    "Method": "GetMyCourses",
+    "RelativePath": "api/Enrollment/my-courses",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Mini_LMS.Controllers.FeedbacksController",
     "Method": "Create",
     "RelativePath": "api/Feedbacks",
@@ -399,17 +457,12 @@
         "IsRequired": true
       },
       {
-        "Name": "Name",
+        "Name": "Title",
         "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "Difficulty",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Description",
+        "Name": "Content",
         "Type": "System.String",
         "IsRequired": false
       },
@@ -455,16 +508,6 @@
   },
   {
     "ContainingType": "Mini_LMS.Controllers.ModuleController",
-    "Method": "GetAllModules",
-    "RelativePath": "api/Module/all",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Mini_LMS.Controllers.ModuleController",
     "Method": "GetModulesByCourse",
     "RelativePath": "api/Module/course/{courseId}",
     "HttpMethod": "GET",
@@ -493,17 +536,12 @@
         "IsRequired": false
       },
       {
-        "Name": "Name",
+        "Name": "Title",
         "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "Difficulty",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Description",
+        "Name": "Content",
         "Type": "System.String",
         "IsRequired": false
       },
